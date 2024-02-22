@@ -12,3 +12,5 @@ class {{name.pascalCase()}}State extends Equatable {
 class {{name.pascalCase()}}Initial extends {{name.pascalCase()}}State {
   const {{name.pascalCase()}}Initial() : super();
 }
+
+{{#addTemplateCode}}// TODO: Delete this class {{/addTemplateCode}}

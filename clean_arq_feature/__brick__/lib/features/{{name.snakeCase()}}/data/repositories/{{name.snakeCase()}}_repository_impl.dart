@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../core/services/connection/network_info.dart';
+{{#hasRemoteData}}import '../../../../core/services/connection/network_info.dart';{{/hasRemoteData}}
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 
