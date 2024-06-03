@@ -1,26 +1,28 @@
-import "package:fpdart/fpdart.dart";
+{{#addTemplateCode}}import "package:fpdart/fpdart.dart";{{/addTemplateCode}}
 
 {{#hasRemoteData}}import "../../../../core/services/connection/network_info.dart";{{/hasRemoteData}}
-import "../../../../core/errors/exceptions.dart";
-import "../../../../core/errors/failure.dart";
+{{#addTemplateCode}}import "../../../../core/errors/exception.dart";
+import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
 
 
 import "../../business/repositories/{{name.snakeCase()}}_repository.dart";
 {{#hasLocalData}}import "../data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
 {{#hasRemoteData}}import "../data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart";{{/hasRemoteData}}
-import "../models/{{name.snakeCase()}}_model.dart";
-import "../models/{{name.snakeCase()}}_params.dart";
+{{#addTemplateCode}}import "../models/{{name.snakeCase()}}_model.dart";
+import "../models/{{name.snakeCase()}}_params.dart";{{/addTemplateCode}}
 
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
-{{#hasRemoteData}}final {{name.pascalCase()}}RemoteDataSource remoteDataSource;{{/hasRemoteData}}
-{{#hasLocalData}}final {{name.pascalCase()}}LocalDataSource localDataSource;{{/hasLocalData}}
-{{#hasRemoteData}}final NetworkInfo networkInfo;{{/hasRemoteData}}
-
   {{name.pascalCase()}}RepositoryImpl({
     {{#hasRemoteData}}required this.remoteDataSource,{{/hasRemoteData}}
     {{#hasLocalData}}required this.localDataSource,{{/hasLocalData}}
     {{#hasRemoteData}}required this.networkInfo,{{/hasRemoteData}}
   });
+  
+{{#hasRemoteData}}final {{name.pascalCase()}}RemoteDataSource remoteDataSource;{{/hasRemoteData}}
+{{#hasLocalData}}final {{name.pascalCase()}}LocalDataSource localDataSource;{{/hasLocalData}}
+{{#hasRemoteData}}final NetworkInfo networkInfo;{{/hasRemoteData}}
+
+  
 
   {{#areCommentsOn}}/*
   A repository is a collection of data operations. It is responsible for 

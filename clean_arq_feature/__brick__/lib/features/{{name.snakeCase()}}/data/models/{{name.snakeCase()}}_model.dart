@@ -8,10 +8,10 @@ class {{name.pascalCase()}}Model extends {{name.pascalCase()}}Entity {
   This could involve deserializing JSON from an API into objects, or mapping database rows to objects.
   */{{/areCommentsOn}}
 
-  {{#addTemplateCode}}factory {{name.pascalCase()}}Model.fromJson({required Map<String, dynamic> json}) =>
+  {{#addTemplateCode}}factory {{name.pascalCase()}}Model.fromMap({required Map<String, dynamic> json}) =>
      {{name.pascalCase()}}Model();
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {};
   }{{/addTemplateCode}}
   

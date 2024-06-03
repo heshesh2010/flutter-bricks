@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter_bloc/flutter_bloc.dart";
 {{^addTemplateCode}}part "{{name.snakeCase()}}_state.dart";{{/addTemplateCode}}
 {{#addTemplateCode}}{{#hasRemoteData}}import "package:dio/dio.dart"; 
@@ -16,7 +14,7 @@ import "../../data/models/{{name.snakeCase()}}_params.dart";
 {{#hasLocalData}}import "../../data/data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
 {{#hasRemoteData}}import "../../data/data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart";{{/hasRemoteData}}{{/addTemplateCode}}
 
-class {{name.pascalCase()}}Cubit extends Cubit<{{#addTemplateCode}}WidgetState<{{name.pascalCase()}}Entity>{{/addTemplateCode}}{{^addTemplateCode}}{{name.pascalCase()}}State{{/addTemplateCode}}> {
+class {{name.pascalCase()}}Cubit extends Cubit<WidgetState<{{name.pascalCase()}}Entity>> {
   
   {{name.pascalCase()}}Cubit() : super({{#addTemplateCode}}WidgetState<{{name.pascalCase()}}Entity>.loading(){{/addTemplateCode}}{{^addTemplateCode}}const {{name.pascalCase()}}Initial(){{/addTemplateCode}});
 

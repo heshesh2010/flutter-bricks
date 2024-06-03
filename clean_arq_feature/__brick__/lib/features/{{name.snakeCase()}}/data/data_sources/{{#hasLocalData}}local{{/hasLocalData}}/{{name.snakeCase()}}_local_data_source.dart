@@ -1,7 +1,7 @@
 import "dart:convert";
-{{#addTemplateCode}}import "package:shared_preferences/shared_preferences.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
-import "../../../../../../core/errors/exceptions.dart";
+{{#addTemplateCode}}import "../../../../../../core/errors/app_exception.dart";
 
 import "../../models/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 

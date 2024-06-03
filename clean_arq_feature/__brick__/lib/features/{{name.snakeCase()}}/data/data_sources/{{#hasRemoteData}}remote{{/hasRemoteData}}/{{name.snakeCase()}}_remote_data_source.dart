@@ -1,7 +1,5 @@
-import "package:dio/dio.dart";
-
+import "../../../../../core/adapters/dio_adapter.dart";
 {{#addTemplateCode}}import "../../../../../core/errors/exceptions.dart";
-
 import "../../models/{{name.snakeCase()}}_params.dart";
 import "../../models/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
@@ -22,7 +20,7 @@ abstract class {{name.pascalCase()}}RemoteDataSource {
 }
 
 class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}RemoteDataSource {
-  final Dio dio;
+  final DioAdapter dio;
 
  {{name.pascalCase()}}RemoteDataSourceImpl({required this.dio});
 
