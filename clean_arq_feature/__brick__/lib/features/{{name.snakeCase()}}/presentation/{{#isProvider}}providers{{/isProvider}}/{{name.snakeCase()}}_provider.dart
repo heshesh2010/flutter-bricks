@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-{{#addTemplateCode}}import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
+{{#addTemplateCode}}import "package:dio/dio.dart";
+import "package:shared_preferences/shared_preferences.dart";
+import "package:data_connection_checker_tv/data_connection_checker.dart";
 
-import '../../../../../core/connection/network_info.dart';
-import '../../../../../core/errors/failure.dart';
+import "../../../../../core/connection/network_info.dart";
+import "../../../../../core/errors/failure.dart";
 
-import '../../data/models/{{name.snakeCase()}}_params.dart';
-import '../../business/entities/{{name.snakeCase()}}_entity.dart';
-import '../../business/use_cases/get_{{name.snakeCase()}}.dart';
-{{#hasLocalData}}import '../../data/data_sources/local/{{name.snakeCase()}}_local_data_source.dart';{{/hasLocalData}}
-{{#hasRemoteData}}import '../../data/data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart';{{/hasRemoteData}}
-import '../../data/repositories/{{name.snakeCase()}}_repository_impl.dart';{{/addTemplateCode}}
+import "../../data/models/{{name.snakeCase()}}_params.dart";
+import "../../business/entities/{{name.snakeCase()}}_entity.dart";
+import "../../business/use_cases/get_{{name.snakeCase()}}.dart";
+{{#hasLocalData}}import "../../data/data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
+{{#hasRemoteData}}import "../../data/data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart";{{/hasRemoteData}}
+import "../../data/repositories/{{name.snakeCase()}}_repository_impl.dart";{{/addTemplateCode}}
 
 class {{name.pascalCase()}}Provider extends ChangeNotifier {
   {{#addTemplateCode}}{{name.pascalCase()}}Entity? {{name.camelCase()}};

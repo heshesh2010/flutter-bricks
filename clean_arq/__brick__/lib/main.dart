@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_flavor/flutter_flavor.dart';
+import "package:flutter/material.dart";
+import "package:flutter_flavor/flutter_flavor.dart";
 
-import 'core/config/dependency_injection.dart';
-import '{{name.snakeCase()}}_app.dart';
+import "core/config/dependency_injection.dart";
+import "{{name.snakeCase()}}_app.dart";
 
 void main() async {
   FlavorConfig(

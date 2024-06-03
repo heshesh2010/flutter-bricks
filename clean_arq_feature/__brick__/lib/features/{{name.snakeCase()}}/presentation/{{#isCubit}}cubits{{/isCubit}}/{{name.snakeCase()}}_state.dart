@@ -1,4 +1,4 @@
-part of '{{name.snakeCase()}}_cubit.dart';
+part of "{{name.snakeCase()}}_cubit.dart";
 
 class {{name.pascalCase()}}State extends Equatable {
   

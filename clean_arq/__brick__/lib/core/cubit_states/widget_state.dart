@@ -1,4 +1,4 @@
-import '../errors/failures.dart';
+import "../errors/failure.dart";
 
 class WidgetState<T> {
   T? data;

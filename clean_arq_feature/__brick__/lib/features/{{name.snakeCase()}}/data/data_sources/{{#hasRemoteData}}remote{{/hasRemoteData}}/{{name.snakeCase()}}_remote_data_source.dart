@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
+import "package:dio/dio.dart";
 
-{{#addTemplateCode}}import '../../../../../core/errors/exceptions.dart';
+{{#addTemplateCode}}import "../../../../../core/errors/exceptions.dart";
 
-import '../../models/{{name.snakeCase()}}_params.dart';
-import '../../models/{{name.snakeCase()}}_model.dart';{{/addTemplateCode}}
+import "../../models/{{name.snakeCase()}}_params.dart";
+import "../../models/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
 abstract class {{name.pascalCase()}}RemoteDataSource {
 
@@ -36,9 +36,9 @@ class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}
     required {{name.pascalCase()}}Params {{name.camelCase()}}Params,
   }) async {
     final response = await dio.get(
-      'YOUR_API_URL_HERE',
+      "YOUR_API_URL_HERE",
       queryParameters: {
-        'api_key': 'if needed',
+        "api_key": "if needed",
       },
     );
 

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../cubit_states/widget_state.dart';
-import '../errors/failures.dart';
+import "../cubit_states/widget_state.dart";
+import "../errors/failure.dart";
 
 class CubitWidgetStateLoader<T> extends StatelessWidget {
   /// The [WidgetState] used to determine wich widget to show
@@ -49,9 +49,9 @@ class CubitWidgetStateLoader<T> extends StatelessWidget {
         return onSuccess(state.data as T);
       case WidgetStatus.failure:
         return onFailure?.call(state.failure as Failure) ??
-            Text(state.failure?.errorMessage ?? 'An error occurred');
+            Text(state.failure?.errorMessage ?? "An error occurred");
       case WidgetStatus.empty:
-        return onEmpty ?? Text('No data found');
+        return onEmpty ?? Text("No data found");
     }
   }
 }

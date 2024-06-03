@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_flavor/flutter_flavor.dart';
+import "package:flutter/material.dart";
+import "package:flutter_flavor/flutter_flavor.dart";
 
-import 'core/constants/colors.dart';
-import 'core/routes/app_router.dart';
+import "core/constants/colors.dart";
+import "core/routes/app_router.dart";
 
 
 class {{name.pascalCase()}}App extends StatelessWidget {
@@ -14,7 +14,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlavorBanner(
       child: MaterialApp.router(
-        title: '{{name.pascalCase()}}',
+        title: "{{name.pascalCase()}}",
         debugShowCheckedModeBanner: false,
 
         //Theming  

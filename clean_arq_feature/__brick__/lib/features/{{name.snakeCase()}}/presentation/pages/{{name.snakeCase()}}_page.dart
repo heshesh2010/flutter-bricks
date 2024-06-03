@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-{{#isGetx}}import 'package:get/get.dart';{{/isGetx}}{{#isRiverpod}}import 'package:flutter_riverpod/flutter_riverpod.dart';{{/isRiverpod}}{{#isProvider}}import 'package:provider/provider.dart';{{/isProvider}}{{#isCubit}}import 'package:flutter_bloc/flutter_bloc.dart';{{/isCubit}}{{#isBloc}}import 'package:flutter_bloc/flutter_bloc.dart';{{/isBloc}}
+import "package:flutter/material.dart";
+import "package:auto_route/auto_route.dart";
 
-{{#isGetx}}import '../getX/{{name.snakeCase()}}_controller.dart';{{/isGetx}}{{#isProvider}}import '../providers/{{name.snakeCase()}}_provider.dart';{{/isProvider}}{{#isRiverpod}}import '../providers/{{name.snakeCase()}}_provider.dart';{{/isRiverpod}}{{#isCubit}}import '../cubits/{{name.snakeCase()}}_cubit.dart';{{/isCubit}}{{#isBloc}}import '../blocs/{{name.snakeCase()}}_bloc.dart';{{/isBloc}}
+{{#isGetx}}import "package:get/get.dart";{{/isGetx}}{{#isRiverpod}}import "package:flutter_riverpod/flutter_riverpod.dart";{{/isRiverpod}}{{#isProvider}}import "package:provider/provider.dart";{{/isProvider}}{{#isCubit}}import "package:flutter_bloc/flutter_bloc.dart";{{/isCubit}}{{#isBloc}}import "package:flutter_bloc/flutter_bloc.dart";{{/isBloc}}
 
+{{#isGetx}}import "../getX/{{name.snakeCase()}}_controller.dart";{{/isGetx}}{{#isProvider}}import "../providers/{{name.snakeCase()}}_provider.dart";{{/isProvider}}{{#isRiverpod}}import "../providers/{{name.snakeCase()}}_provider.dart";{{/isRiverpod}}{{#isCubit}}import "../cubits/{{name.snakeCase()}}_cubit.dart";{{/isCubit}}{{#isBloc}}import "../blocs/{{name.snakeCase()}}_bloc.dart";{{/isBloc}}
+
+@RoutePage()
 class {{name.pascalCase()}}Page extends {{#isGetx}}GetView<{{name.pascalCase()}}Controller>{{/isGetx}}{{#isRiverpod}}ConsumerWidget{{/isRiverpod}}{{#isProvider}}StatelessWidget{{/isProvider}}{{#isCubit}}StatelessWidget{{/isCubit}}{{#isBloc}}StatelessWidget{{/isBloc}}
 {
   const {{name.pascalCase()}}Page({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
-part of '{{name.snakeCase()}}_bloc.dart';
+part of "{{name.snakeCase()}}_bloc.dart";
 
 
 class {{name.pascalCase()}}State extends Equatable {
   const {{name.pascalCase()}}State({
-    {{#addTemplateCode}}this.customProperty = 'Default Value',{{/addTemplateCode}}
+    {{#addTemplateCode}}this.customProperty = "Default Value",{{/addTemplateCode}}
   });
 
   {{#addTemplateCode}}final String customProperty;{{/addTemplateCode}}

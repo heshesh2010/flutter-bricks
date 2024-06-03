@@ -1,6 +1,6 @@
 
-  import 'package:get/get.dart'; 
-  import '{{name.snakeCase()}}_controller.dart';
+  import "package:get/get.dart"; 
+  import "{{name.snakeCase()}}_controller.dart";
 
   class {{name.pascalCase()}Binding implements Bindings {
     @override

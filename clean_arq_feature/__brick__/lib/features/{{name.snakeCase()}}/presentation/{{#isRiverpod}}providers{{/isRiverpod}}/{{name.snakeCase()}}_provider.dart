@@ -1,4 +1,4 @@
-import 'package:riverpod/riverpod.dart';
+import "package:riverpod/riverpod.dart";
 
 final {{name.camelCase()}}Provider = StateNotifierProvider.autoDispose((ref) {
   return {{name.pascalCase()}}();

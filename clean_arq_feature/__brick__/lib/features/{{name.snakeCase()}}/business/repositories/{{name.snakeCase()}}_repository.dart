@@ -1,9 +1,9 @@
-{{#addTemplateCode}}import 'package:fpdart/fpdart.dart';
+{{#addTemplateCode}}import "package:fpdart/fpdart.dart";
 
-import '../../../../core/errors/failures.dart';
+import "../../../../core/errors/failure.dart";
 
-import '../../data/models/{{name.snakeCase()}}_params.dart';
-import '../entities/{{name.snakeCase()}}_entity.dart';{{/addTemplateCode}}
+import "../../data/models/{{name.snakeCase()}}_params.dart";
+import "../entities/{{name.snakeCase()}}_entity.dart";{{/addTemplateCode}}
 
 abstract class {{name.pascalCase()}}Repository {
 

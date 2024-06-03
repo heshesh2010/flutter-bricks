@@ -1,9 +1,9 @@
-import 'dart:convert';
-{{#addTemplateCode}}import 'package:shared_preferences/shared_preferences.dart';
+import "dart:convert";
+{{#addTemplateCode}}import "package:shared_preferences/shared_preferences.dart";
 
-import '../../../../../../core/errors/exceptions.dart';
+import "../../../../../../core/errors/exceptions.dart";
 
-import '../../models/{{name.snakeCase()}}_model.dart';{{/addTemplateCode}}
+import "../../models/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
 abstract class {{name.pascalCase()}}LocalDataSource {
 
@@ -20,7 +20,7 @@ abstract class {{name.pascalCase()}}LocalDataSource {
 
 }
 
-{{#addTemplateCode}}const _cached{{name.pascalCase()}} = 'CACHED_{{name.constantCase()}}';{{/addTemplateCode}}
+{{#addTemplateCode}}const _cached{{name.pascalCase()}} = "CACHED_{{name.constantCase()}}";{{/addTemplateCode}}
 
 class {{name.pascalCase()}}LocalDataSourceImpl implements {{name.pascalCase()}}LocalDataSource {
   final SharedPreferences localSource;
