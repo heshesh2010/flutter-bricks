@@ -5,6 +5,7 @@ import "../../../../core/errors/failure.dart";
 import "../../data/models/{{name.snakeCase()}}_params.dart";
 import "../entities/{{name.snakeCase()}}_entity.dart";{{/addTemplateCode}}
 
+/// Data operations for the {{name.pascalCase()}} collection
 abstract class {{name.pascalCase()}}Repository {
 
   {{#areCommentsOn}}/*

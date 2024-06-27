@@ -5,6 +5,7 @@ import "package:shared_preferences/shared_preferences.dart";
 
 import "../../models/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
+/// Local data source for the {{name.pascalCase()}} collection
 abstract class {{name.pascalCase()}}LocalDataSource {
 
   {{#areCommentsOn}}/*
@@ -22,10 +23,13 @@ abstract class {{name.pascalCase()}}LocalDataSource {
 
 {{#addTemplateCode}}const _cached{{name.pascalCase()}} = "CACHED_{{name.constantCase()}}";{{/addTemplateCode}}
 
+/// Local data source for the {{name.pascalCase()}} collection
 class {{name.pascalCase()}}LocalDataSourceImpl implements {{name.pascalCase()}}LocalDataSource {
-  final SharedPreferences localSource;
-
+  /// Local data source for the {{name.pascalCase()}} collection
   {{name.pascalCase()}}LocalDataSourceImpl({required this.localSource});
+
+  /// Shared preferences instance
+  final SharedPreferences localSource;
 
   {{#areCommentsOn}}/*
   The local data source implementation is responsible for making the actual database requests. 

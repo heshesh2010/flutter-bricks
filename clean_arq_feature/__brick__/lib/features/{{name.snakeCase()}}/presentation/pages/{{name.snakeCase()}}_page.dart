@@ -16,7 +16,7 @@ class {{name.pascalCase()}}Page extends {{#isGetx}}GetView<{{name.pascalCase()}}
     {{#isProvider}}return Scaffold(
       body: Provider(
         create: (context) => {{name.pascalCase()}}Provider(),
-        child: Center(
+        child: const Center(
           child: Text("Created with clean arq brick"),
         ),
       ),

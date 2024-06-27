@@ -3,6 +3,7 @@ import "../../../../../core/adapters/dio_adapter.dart";
 import "../../models/{{name.snakeCase()}}_params.dart";
 import "../../models/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
+/// Remote data source for the {{name.pascalCase()}} collection
 abstract class {{name.pascalCase()}}RemoteDataSource {
 
   {{#areCommentsOn}}/*
@@ -19,10 +20,13 @@ abstract class {{name.pascalCase()}}RemoteDataSource {
   
 }
 
+/// Remote data source for the {{name.pascalCase()}} collection
 class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}RemoteDataSource {
-  final DioAdapter dio;
-
+  /// Remote data source for the {{name.pascalCase()}} collection
  {{name.pascalCase()}}RemoteDataSourceImpl({required this.dio});
+
+  /// Dio adapter instance
+  final DioAdapter dio;
 
   {{#areCommentsOn}}/*
   The remote data source implementation is responsible for making the actual API requests. 

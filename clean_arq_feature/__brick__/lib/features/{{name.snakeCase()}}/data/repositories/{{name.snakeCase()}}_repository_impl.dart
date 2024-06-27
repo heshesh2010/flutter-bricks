@@ -11,7 +11,9 @@ import "../../business/repositories/{{name.snakeCase()}}_repository.dart";
 {{#addTemplateCode}}import "../models/{{name.snakeCase()}}_model.dart";
 import "../models/{{name.snakeCase()}}_params.dart";{{/addTemplateCode}}
 
+/// Data operations for the {{name.pascalCase()}} collection
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
+  /// Data operations for the {{name.pascalCase()}} collection
   {{name.pascalCase()}}RepositoryImpl({
     {{#hasRemoteData}}required this.remoteDataSource,{{/hasRemoteData}}
     {{#hasLocalData}}required this.localDataSource,{{/hasLocalData}}

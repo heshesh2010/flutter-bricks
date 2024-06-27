@@ -1,6 +1,8 @@
  import "package:equatable/equatable.dart";
 
+/// Entity that contains the data of the {{name.pascalCase()}}.
 class {{name.pascalCase()}}Entity extends Equatable{
+  /// Entity that contains the data of the {{name.pascalCase()}}.
   const {{name.pascalCase()}}Entity();
 
   {{#areCommentsOn}}/*
@@ -8,7 +10,7 @@ class {{name.pascalCase()}}Entity extends Equatable{
   */{{/areCommentsOn}}
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
   {{#areCommentsOn}}/*
   List your entity attributes here 
   */{{/areCommentsOn}}
@@ -16,5 +18,4 @@ class {{name.pascalCase()}}Entity extends Equatable{
 
   @override
   bool get stringify => true;
-  
 }

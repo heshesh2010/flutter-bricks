@@ -1,4 +1,6 @@
+/// Parameters used to make the {{name.pascalCase()}} request.
 class {{name.pascalCase()}}Params {
+  /// Parameters used to make the {{name.pascalCase()}} request.
   const {{name.pascalCase()}}Params();
   
   {{#areCommentsOn}}/*
