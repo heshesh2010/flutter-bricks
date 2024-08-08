@@ -2,7 +2,6 @@
 
 {{#hasRemoteData}}import "../../../../core/services/connection/network_info.dart";{{/hasRemoteData}}
 {{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";
-import "../../../../core/errors/exception.dart";
 import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
 
 
