@@ -15,7 +15,12 @@ class Get{{name.pascalCase()}} implements UseCase<{{name.pascalCase()}}Model, {{
   Future<Either<Failure, {{name.pascalCase()}}Model>> call({
     required {{name.pascalCase()}}Params params,
   }) {
+    {{^addTemplateCode}}
     // TODO: implement call
     throw UnimplementedError();
+    {{/addTemplateCode}}
+    {{#addTemplateCode}}
+    return {{name.camelCase()}}Repository.get{{name.pascalCase()}}({{name.camelCase()}}Params: params);
+    {{/addTemplateCode}
   }
 }
