@@ -1,7 +1,8 @@
 {{#addTemplateCode}}import "package:fpdart/fpdart.dart";{{/addTemplateCode}}
 
 {{#hasRemoteData}}import "../../../../core/services/connection/network_info.dart";{{/hasRemoteData}}
-{{#addTemplateCode}}import "../../../../core/errors/exception.dart";
+{{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";
+import "../../../../core/errors/exception.dart";
 import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
 
 
@@ -36,27 +37,22 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
       {required {{name.pascalCase()}}Params {{name.camelCase()}}Params}) async {
 
     {{#hasRemoteData}}if (await networkInfo.isConnected!) {
-      try {
-        {{name.pascalCase()}}Model remote{{name.pascalCase()}} =
-            await remoteDataSource.get{{name.pascalCase()}}({{name.camelCase()}}Params: {{name.camelCase()}}Params);
-
-        return Right(remote{{name.pascalCase()}});
-      } on ServerException {
-        return Left(ServerFailure(errorMessage: "This is a server exception"));
-      }
+      return ErrorHandler.handleApiCall<{{name.pascalCase()}}Model>(
+        () {
+          return remoteDataSource.get{{name.pascalCase()}}({{name.camelCase()}}Params: {{name.camelCase()}}Params);
+        },
+      );
     } else {
-      {{#hasLocalData}}try {
-        {{name.pascalCase()}}Model local{{name.pascalCase()}} = await localDataSource.getLast{{name.pascalCase()}}();
-        return Right(local{{name.pascalCase()}});
-      } on CacheException {
-        return Left(CacheFailure(errorMessage: "This is a cache exception"));
-      }{{/hasLocalData}}
+      {{#hasLocalData}}return ErrorHandler.handleCacheCall<{{name.pascalCase()}}Model>(
+        () {
+          return localDataSource.getLast{{name.pascalCase()}}();
+        },
+      );{{/hasLocalData}}
     }{{/hasRemoteData}}{{^hasRemoteData}}
-    {{#hasLocalData}}try {
-      {{name.pascalCase()}}Model local{{name.pascalCase()}} = await localDataSource.getLast{{name.pascalCase}}();
-      return Right(local{{name.pascalCase()}});
-    } on CacheException {
-      return Left(CacheFailure(errorMessage: "This is a cache exception"));
-    }{{/hasLocalData}}{{/hasRemoteData}}
+    {{#hasLocalData}}return ErrorHandler.handleCacheCall<{{name.pascalCase()}}Model>(
+        () {
+          return localDataSource.getLast{{name.pascalCase()}}();
+        },
+      );{{/hasLocalData}}{{/hasRemoteData}}
   }{{/addTemplateCode}}
 }
