@@ -35,7 +35,7 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
   Future<Either<Failure, {{name.pascalCase()}}Model>> get{{name.pascalCase()}}(
       {required {{name.pascalCase()}}Params {{name.camelCase()}}Params}) async {
 
-    {{#hasRemoteData}}if (await networkInfo.isConnected!) {
+    {{#hasRemoteData}}if (await networkInfo.isConnected) {
       return ErrorHandler.handleApiCall<{{name.pascalCase()}}Model>(
         () {
           return remoteDataSource.get{{name.pascalCase()}}({{name.camelCase()}}Params: {{name.camelCase()}}Params);

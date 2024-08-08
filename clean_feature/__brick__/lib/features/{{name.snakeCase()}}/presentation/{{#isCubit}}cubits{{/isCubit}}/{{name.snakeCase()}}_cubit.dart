@@ -1,9 +1,10 @@
 import "package:flutter_bloc/flutter_bloc.dart";
+{{#hasLocalData}}{{#addTemplateCode}}import "package:shared_preferences/shared_preferences.dart";{{/addTemplateCode}}{{/hasLocalData}}
 
 import "../../../../core/cubit_states/state_mixin.dart";
 import "../../business/entities/{{name.snakeCase()}}_entity.dart";
 
-{{#addTemplateCode}}{{#hasRemoteData}}import "package:dio/dio.dart"; 
+{{#addTemplateCode}}{{#hasRemoteData}}import "../../../../core/adapters/dio_adapter.dart";
 import "package:internet_connection_checker_plus/internet_connection_checker_plus.dart";{{/hasRemoteData}}
 
 import "../../../../core/errors/failure.dart";
@@ -22,7 +23,11 @@ class {{name.pascalCase()}}Cubit extends Cubit<StateMixin<{{name.pascalCase()}}E
   {{#addTemplateCode}}void eitherFailureOr{{name.pascalCase()}}() async {
     {{name.pascalCase()}}RepositoryImpl repository = {{name.pascalCase()}}RepositoryImpl(
       {{#hasRemoteData}}remoteDataSource: {{name.pascalCase()}}RemoteDataSourceImpl(
-        dio: Dio(),
+        dio: DioAdapter(
+          internetInfo: NetworkInfoImpl(
+            InternetConnection(),
+          ),
+        ),
       ),{{/hasRemoteData}}
       {{#hasLocalData}}localDataSource: {{name.pascalCase()}}LocalDataSourceImpl(
         localSource: await SharedPreferences.getInstance(),
@@ -34,15 +39,15 @@ class {{name.pascalCase()}}Cubit extends Cubit<StateMixin<{{name.pascalCase()}}E
 
     final failureOr{{name.pascalCase()}} =
         await Get{{name.pascalCase()}}({{name.camelCase()}}Repository: repository).call(
-      {{name.camelCase()}}Params: {{name.pascalCase()}}Params(),
+      {{name.camelCase()}}Params: const {{name.pascalCase()}}Params(),
     );
 
     failureOr{{name.pascalCase()}}.fold(
       (Failure newFailure) {
-        emit(WidgetState.failure(newFailure));
+        emit(StateMixin.failure(newFailure));
       },
       ({{name.pascalCase()}}Entity new{{name.pascalCase()}}) {
-        emit(WidgetState.success(new{{name.pascalCase()}}));
+        emit(StateMixin.success(new{{name.pascalCase()}}));
       },
     );
   }{{/addTemplateCode}}
