@@ -3,7 +3,7 @@ import "package:shared_preferences/shared_preferences.dart";
 
 {{#addTemplateCode}}import "../../../../../../core/errors/app_exception.dart";
 
-import "../../models/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
+import "../../models/dtos/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
 /// Local data source for the {{name.pascalCase()}} collection
 abstract class {{name.pascalCase()}}LocalDataSource {

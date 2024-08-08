@@ -21,6 +21,6 @@ class Get{{name.pascalCase()}} implements UseCase<{{name.pascalCase()}}Model, {{
     {{/addTemplateCode}}
     {{#addTemplateCode}}
     return {{name.camelCase()}}Repository.get{{name.pascalCase()}}({{name.camelCase()}}Params: params);
-    {{/addTemplateCode}
+    {{/addTemplateCode}}
   }
 }

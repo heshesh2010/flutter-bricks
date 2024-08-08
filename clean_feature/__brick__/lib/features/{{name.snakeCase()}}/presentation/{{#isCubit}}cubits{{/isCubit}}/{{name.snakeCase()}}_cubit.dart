@@ -12,7 +12,7 @@ import "../../../../core/errors/failure.dart";
 
 import "../../data/repositories/{{name.snakeCase()}}_repository_impl.dart";
 import "../../business/use_cases/get_{{name.snakeCase()}}.dart";
-import "../../data/models/{{name.snakeCase()}}_params.dart";
+import "../../data/models/params/{{name.snakeCase()}}_params.dart";
 {{#hasLocalData}}import "../../data/data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
 {{#hasRemoteData}}import "../../data/data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart";{{/hasRemoteData}}{{/addTemplateCode}}
 
