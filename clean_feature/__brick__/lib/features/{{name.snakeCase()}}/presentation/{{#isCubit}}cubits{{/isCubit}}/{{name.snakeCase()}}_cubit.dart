@@ -1,6 +1,6 @@
 import "package:flutter_bloc/flutter_bloc.dart";
 
-import "../../../../core/cubit_states/widget_state.dart";
+import "../../../../core/cubit_states/state_mixin.dart";
 import "../../business/entities/{{name.snakeCase()}}_entity.dart";
 
 {{#addTemplateCode}}{{#hasRemoteData}}import "package:dio/dio.dart"; 
@@ -15,9 +15,9 @@ import "../../data/models/{{name.snakeCase()}}_params.dart";
 {{#hasLocalData}}import "../../data/data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
 {{#hasRemoteData}}import "../../data/data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart";{{/hasRemoteData}}{{/addTemplateCode}}
 
-class {{name.pascalCase()}}Cubit extends Cubit<WidgetState<{{name.pascalCase()}}Entity>> {
+class {{name.pascalCase()}}Cubit extends Cubit<StateMixin<{{name.pascalCase()}}Entity>> {
   
-  {{name.pascalCase()}}Cubit() : super(WidgetState<{{name.pascalCase()}}Entity>.loading());
+  {{name.pascalCase()}}Cubit() : super(StateMixin<{{name.pascalCase()}}Entity>.loading());
 
   {{#addTemplateCode}}void eitherFailureOr{{name.pascalCase()}}() async {
     {{name.pascalCase()}}RepositoryImpl repository = {{name.pascalCase()}}RepositoryImpl(
