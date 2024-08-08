@@ -1,6 +1,6 @@
 {{#addTemplateCode}}import "package:fpdart/fpdart.dart";{{/addTemplateCode}}
 
-{{#hasRemoteData}}import "../../../../core/services/connection/network_info.dart";{{/hasRemoteData}}
+{{#hasRemoteData}}{{#hasLocalData}}import "../../../../core/services/connection/network_info.dart";{{/hasLocalData}}{{/hasRemoteData}}
 {{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";
 import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
 
@@ -8,8 +8,8 @@ import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
 import "../../business/repositories/{{name.snakeCase()}}_repository.dart";
 {{#hasLocalData}}import "../data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
 {{#hasRemoteData}}import "../data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart";{{/hasRemoteData}}
-{{#addTemplateCode}}import "../models/{{name.snakeCase()}}_model.dart";
-import "../models/{{name.snakeCase()}}_params.dart";{{/addTemplateCode}}
+{{#addTemplateCode}}import "../models/dtos/{{name.snakeCase()}}_model.dart";
+import "../models/params/{{name.snakeCase()}}_params.dart";{{/addTemplateCode}}
 
 /// Data operations for the {{name.pascalCase()}} collection
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
@@ -17,14 +17,12 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
   {{name.pascalCase()}}RepositoryImpl({
     {{#hasRemoteData}}required this.remoteDataSource,{{/hasRemoteData}}
     {{#hasLocalData}}required this.localDataSource,{{/hasLocalData}}
-    {{#hasRemoteData}}required this.networkInfo,{{/hasRemoteData}}
+    {{#hasRemoteData}}{{#hasLocalData}}required this.networkInfo,{{/hasLocalData}}{{/hasRemoteData}}
   });
   
 {{#hasRemoteData}}final {{name.pascalCase()}}RemoteDataSource remoteDataSource;{{/hasRemoteData}}
 {{#hasLocalData}}final {{name.pascalCase()}}LocalDataSource localDataSource;{{/hasLocalData}}
-{{#hasRemoteData}}final NetworkInfo networkInfo;{{/hasRemoteData}}
-
-  
+{{#hasRemoteData}}{{#hasLocalData}}final NetworkInfo networkInfo;{{/hasLocalData}}{{/hasRemoteData}}
 
   {{#areCommentsOn}}/*
   A repository is a collection of data operations. It is responsible for 
