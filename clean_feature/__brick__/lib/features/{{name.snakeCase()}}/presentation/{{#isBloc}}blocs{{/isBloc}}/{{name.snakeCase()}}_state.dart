@@ -12,7 +12,7 @@ class {{name.pascalCase()}}State extends Equatable {
   List<Object> get props => [{{#addTemplateCode}}customProperty{{/addTemplateCode}}];
 
   {{name.pascalCase()}}State copyWith({
-    {{#addTemplateCode}}String? customProperty,{{{/addTemplateCode}}}
+    {{#addTemplateCode}}String? customProperty,{{/addTemplateCode}}
   }) {
     return {{name.pascalCase()}}State(
       {{#addTemplateCode}}customProperty: customProperty ?? this.customProperty,{{/addTemplateCode}}
