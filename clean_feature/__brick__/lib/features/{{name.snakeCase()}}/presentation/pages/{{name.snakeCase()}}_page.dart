@@ -8,7 +8,7 @@ import "package:auto_route/auto_route.dart";
 @RoutePage()
 class {{name.pascalCase()}}Page extends {{#isGetx}}GetView<{{name.pascalCase()}}Controller>{{/isGetx}}{{#isRiverpod}}ConsumerWidget{{/isRiverpod}}{{#isProvider}}StatelessWidget{{/isProvider}}{{#isCubit}}StatelessWidget{{/isCubit}}{{#isBloc}}StatelessWidget{{/isBloc}}
 {
-  const {{name.pascalCase()}}Page({Key? key}) : super(key: key);
+  const {{name.pascalCase()}}Page({super.key});
 
   @override
   Widget build(BuildContext context{{#isRiverpod}}, WidgetRef ref {{/isRiverpod}}) {
