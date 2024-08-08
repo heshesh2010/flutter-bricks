@@ -5,10 +5,9 @@ import "package:dio/io.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart";
 
-import "../errors/connection/client_error_exception.dart";
-import "../errors/connection/connection_error_exception.dart";
-import "../errors/connection/server_error_exception.dart";
+import "../errors/connection/http_call_exception.dart";
 import "../extensions/num_extension.dart";
+import "../services/connection/network_info.dart";
 
 /// Adapter for the Dio client
 ///
@@ -22,12 +21,16 @@ class DioAdapter extends DioForNative {
   /// configurations for the application. It also includes the necessary
   /// error handling for the application.
   DioAdapter({
+    required this.internetInfo,
     this.receiveTimeout,
     this.connectTimeout,
     this.sendTimeout,
   }) {
     _initializeAdapter();
   }
+
+  /// Information about the internet connection
+  final NetworkInfo internetInfo;
 
   /// The timeout for the receive operation
   final Duration? receiveTimeout;
@@ -74,9 +77,8 @@ class DioAdapter extends DioForNative {
   FutureOr<void> onRequestMethod(
     RequestOptions options,
     RequestInterceptorHandler handler,
-  ) async {
-    return handler.next(options);
-  }
+  ) async =>
+      handler.next(options);
 
   /// Handles the response prior to being returned
   FutureOr<void> onResponseMethod(
@@ -88,52 +90,71 @@ class DioAdapter extends DioForNative {
   /// Handles the error prior to being thrown
   FutureOr<void> onErrorMethod(
     DioException error,
-    ErrorInterceptorHandler _,
-  ) {
+    ErrorInterceptorHandler handler,
+  ) async {
+    HttpCallException? errorObject;
     switch (error.type) {
       case DioExceptionType.connectionError:
-        throw ConnectionErrorException.serverDown();
+        errorObject = await internetInfo.isConnected
+            ? ConnectionErrorException.serverDown()
+            : ConnectionErrorException.clientOffline();
 
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
-        throw ConnectionErrorException.clientOffline();
+        errorObject = await internetInfo.isConnected
+            ? ConnectionErrorException.serverDown()
+            : ConnectionErrorException.clientOffline();
 
       case DioExceptionType.badResponse:
         final statusCode = error.response!.statusCode!;
 
         if (statusCode.isBetween(300, 499)) {
-          if (statusCode.isBetween(401, 403)) {
-            throw ClientErrorException.unauthorized(
-              data: error.response?.data,
-            );
-          }
+          final errorMessage = error.response?.data["Message"] != null
+              ? (error.response!.data["Message"] as String).trim()
+              : "Los parámetros enviados al servidor son incorrectos";
 
-          if (error.response!.data["Message"] != null) {
-            throw ClientErrorException.badRequest(
-              data: error.response?.data,
-              message: (error.response!.data["Message"] as String).trim(),
-            );
-          }
-
-          throw ClientErrorException.badRequest(
-            data: error.response?.data,
-          );
+          errorObject = statusCode.isBetween(401, 403)
+              ? ClientErrorException.unauthorized(data: error.response?.data)
+              : ClientErrorException.badRequest(
+                  message: errorMessage,
+                  data: error.response?.data,
+                );
         } else if (statusCode.isBetween(500, 599)) {
-          throw ServerErrorException(
+          final String? generalMessage =
+              error.response?.data["ExceptionMessage"] as String?;
+
+          final Map<String, dynamic>? innerException =
+              error.response?.data["InnerException"];
+          final String? innerMessage =
+              innerException?["ExceptionMessage"] as String?;
+
+          errorObject = ServerErrorException(
             title: "Error del servidor",
+            message: innerMessage ??
+                generalMessage ??
+                "Estamos trabajando en ello lo más rápido posible",
             data: error.response?.data,
           );
+        } else {
+          errorObject = ClientErrorException.badRequest();
         }
-        throw ClientErrorException.badRequest();
       case DioExceptionType.cancel:
-        throw ClientErrorException.cancelRequest();
+        errorObject = ClientErrorException.cancelRequest();
       case DioExceptionType.badCertificate:
-        throw ServerErrorException.badCertificate();
+        errorObject = ServerErrorException.badCertificate();
       case DioExceptionType.unknown:
-        throw ConnectionErrorException.clientOffline(
-          message: "El dispositivo no tiene acceso a internet",
-        );
+        errorObject = await internetInfo.isConnected
+            ? ConnectionErrorException.serverDown()
+            : ConnectionErrorException.clientOffline();
     }
+
+    final customError = error.copyWith(
+      error: errorObject,
+    );
+
+    handler.reject(customError);
+
+    return;
   }
 }

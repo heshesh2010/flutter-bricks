@@ -1,11 +1,23 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 
 import "../cubit_states/state_mixin.dart";
 import "../errors/failure.dart";
 
-class CubitStateMixinBuilder<T> extends StatelessWidget {
-  /// The [StateMixin] used to determine wich widget to show
-  final StateMixin state;
+/// A widget that loads the state of a [StateStreamable] and shows different
+/// widgets based on the state.
+class CubitWidgetStateLoader<T extends StateStreamable<StateMixin<B>>, B>
+    extends StatelessWidget {
+  /// A widget that loads the state of a [StateStreamable] and shows different
+  /// widgets based on the state.
+  const CubitWidgetStateLoader({
+    required this.onSuccess,
+    this.onLoading,
+    this.onFailure,
+    this.onEmpty,
+    this.onInitial,
+    super.key,
+  });
 
   /// The [Widget] to show when the state is [WidgetStatus.loading]
   ///
@@ -13,7 +25,7 @@ class CubitStateMixinBuilder<T> extends StatelessWidget {
   final Widget? onLoading;
 
   /// The [Widget] to show when the state is [WidgetStatus.success]
-  final Widget Function(T data) onSuccess;
+  final Widget Function(B data) onSuccess;
 
   /// The [Widget] to show when the state is [WidgetStatus.failure]
   ///
@@ -28,30 +40,24 @@ class CubitStateMixinBuilder<T> extends StatelessWidget {
   /// The [Widget] to show when the state is [WidgetStatus.initial]
   final Widget? onInitial;
 
-  const CubitStateMixinBuilder({
-    super.key,
-    required this.state,
-    required this.onSuccess,
-    this.onLoading,
-    this.onFailure,
-    this.onEmpty,
-    this.onInitial,
-  });
-
   @override
-  Widget build(BuildContext context) {
-    switch (state.status) {
-      case WidgetStatus.initial:
-        return onInitial ?? const SizedBox.shrink();
-      case WidgetStatus.loading:
-        return onLoading ?? const CircularProgressIndicator.adaptive();
-      case WidgetStatus.success:
-        return onSuccess(state.data as T);
-      case WidgetStatus.failure:
-        return onFailure?.call(state.failure as Failure) ??
-            Text(state.failure?.message ?? "An error occurred");
-      case WidgetStatus.empty:
-        return onEmpty ?? const Text("No data found");
-    }
-  }
+  Widget build(BuildContext context) => BlocBuilder<T, StateMixin<B>>(
+        builder: (context, state) {
+          switch (state.status) {
+            case WidgetStatus.initial:
+              return onInitial ?? const SizedBox.shrink();
+            case WidgetStatus.loading:
+              return Center(
+                child: onLoading ?? const CircularProgressIndicator.adaptive(),
+              );
+            case WidgetStatus.success:
+              return onSuccess(state.data as B);
+            case WidgetStatus.failure:
+              return onFailure?.call(state.failure!) ??
+                  Text(state.failure?.title ?? "Ocurrió un error inesperado");
+            case WidgetStatus.empty:
+              return onEmpty ?? const Text("No hay información disponible");
+          }
+        },
+      );
 }

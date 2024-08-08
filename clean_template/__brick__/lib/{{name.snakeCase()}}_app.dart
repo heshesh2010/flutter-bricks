@@ -5,11 +5,10 @@ import "core/constants/theme/material_theme.dart";
 import "core/constants/theme/util.dart";
 import "core/routes/app_router.dart";
 
+final _appRouter = AppRouter();   
 
 class {{name.pascalCase()}}App extends StatelessWidget {
-  {{name.pascalCase()}}App({super.key});
-
-  final appRouter = AppRouter();    
+  const {{name.pascalCase()}}App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class {{name.pascalCase()}}App extends StatelessWidget {
                     .dark(),
 
 
-        routerConfig: appRouter.config(),
+        routerConfig: _appRouter.config(),
       ),
     );
   }
