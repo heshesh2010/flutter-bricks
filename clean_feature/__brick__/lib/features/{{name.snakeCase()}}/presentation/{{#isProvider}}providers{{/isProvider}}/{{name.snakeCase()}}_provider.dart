@@ -1,13 +1,13 @@
 import "package:flutter/material.dart";
 
-{{#addTemplateCode}}import "package:dio/dio.dart";
+{{#addTemplateCode}}import "package:internet_connection_checker_plus/internet_connection_checker_plus.dart";
 import "package:shared_preferences/shared_preferences.dart";
-import "package:data_connection_checker_tv/data_connection_checker.dart";
 
-import "../../../../../core/connection/network_info.dart";
 import "../../../../../core/errors/failure.dart";
+import "../../../../core/adapters/dio_adapter.dart";
+import "../../../../core/services/connection/network_info.dart";
 
-import "../../data/models/{{name.snakeCase()}}_params.dart";
+import "../../data/models/params/{{name.snakeCase()}}_params.dart";
 import "../../business/entities/{{name.snakeCase()}}_entity.dart";
 import "../../business/use_cases/get_{{name.snakeCase()}}.dart";
 {{#hasLocalData}}import "../../data/data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
@@ -26,19 +26,23 @@ class {{name.pascalCase()}}Provider extends ChangeNotifier {
   {{#addTemplateCode}}void eitherFailureOr{{name.pascalCase()}}() async {
     {{name.pascalCase()}}RepositoryImpl repository = {{name.pascalCase()}}RepositoryImpl(
       remoteDataSource: {{name.pascalCase()}}RemoteDataSourceImpl(
-        dio: Dio(),
+        dio: DioAdapter(
+          internetInfo: NetworkInfoImpl(
+            InternetConnection(),
+          ),
+        ),
       ),
       localDataSource: {{name.pascalCase()}}LocalDataSourceImpl(
         localSource: await SharedPreferences.getInstance(),
       ),
       networkInfo: NetworkInfoImpl(
-        DataConnectionChecker(),
+        InternetConnection(),
       ),
     );
 
     final failureOr{{name.pascalCase()}} =
         await Get{{name.pascalCase()}}({{name.camelCase()}}Repository: repository).call(
-      {{name.camelCase()}}Params: {{name.pascalCase()}}Params(),
+      params: {{name.pascalCase()}}Params(),
     );
 
     failureOr{{name.pascalCase()}}.fold(
