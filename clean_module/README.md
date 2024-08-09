@@ -1,4 +1,4 @@
-# Clean Feature
+# Clean Module
 
 This mason brick generates a feature structure following the principles of Clean Architecture. It helps in organizing your codebase into distinct layers, promoting separation of concerns and maintainability.
 
@@ -53,7 +53,7 @@ __brick__/
 To generate a new feature using this brick, run the following command:
 
 ```sh
-mason make clean_feature --name <feature_name> --hasLocalData true --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
+mason make clean_module --name <feature_name> --hasLocalData true --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
 ```
 
 Replace `<feature_name>` with the desired name of your feature. 

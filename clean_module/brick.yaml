@@ -1,4 +1,4 @@
-name: clean_feature
+name: clean_module
 description: Brick for creating a feature with clean architecture
 
 # The following defines the brick repository url.
