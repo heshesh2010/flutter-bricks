@@ -16,5 +16,5 @@ void main() async {
 
   await DependencyInjection.init();
 
-  runApp({{name.pascalCase()}}App());
+  runApp(const {{name.pascalCase()}}App());
 }
