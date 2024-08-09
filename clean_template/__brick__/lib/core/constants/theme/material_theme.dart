@@ -1,6 +1,6 @@
 // Created with https://material-foundation.github.io/material-theme-builder/
 
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, deprecated_member_use
 
 import "package:flutter/material.dart";
 

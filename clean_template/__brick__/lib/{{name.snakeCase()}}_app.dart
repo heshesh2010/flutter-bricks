@@ -7,12 +7,14 @@ import "core/routes/app_router.dart";
 
 final _appRouter = AppRouter();   
 
+/// [{{name.pascalCase()}}App] is the entry point of the application.
 class {{name.pascalCase()}}App extends StatelessWidget {
+  /// [{{name.pascalCase()}}App] is the entry point of the application.
   const {{name.pascalCase()}}App({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return FlavorBanner(
+  Widget build(BuildContext context) =>
+     FlavorBanner(
       child: MaterialApp.router(
         title: "{{name.pascalCase()}}",
         debugShowCheckedModeBanner: false,
@@ -29,5 +31,4 @@ class {{name.pascalCase()}}App extends StatelessWidget {
         routerConfig: _appRouter.config(),
       ),
     );
-  }
 }
