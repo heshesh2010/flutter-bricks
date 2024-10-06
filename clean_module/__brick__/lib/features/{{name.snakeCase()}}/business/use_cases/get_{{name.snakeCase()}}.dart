@@ -1,7 +1,7 @@
 import "package:clean_playground/core/errors/failure.dart";
-import "package:fpdart/fpdart.dart";
+import "package:dartz/dartz.dart";
 
-import "../../../../core/constants/classes/use_case.dart";
+import "../../../../core/domain/usecase/base_usecase.dart";
 import "../../data/models/params/{{name.camelCase()}}_params.dart";
 import "../entities/{{name.camelCase()}}_entity.dart";
 import "../repositories/{{name.camelCase()}}_repository.dart";

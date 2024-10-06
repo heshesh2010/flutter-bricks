@@ -1,4 +1,4 @@
-{{#addTemplateCode}}import "package:fpdart/fpdart.dart";{{/addTemplateCode}}
+{{#addTemplateCode}}import "package:dartz/dartz.dart";{{/addTemplateCode}}
 
 {{#hasRemoteData}}{{#hasLocalData}}import "../../../../core/services/connection/network_info.dart";{{/hasLocalData}}{{/hasRemoteData}}
 {{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";

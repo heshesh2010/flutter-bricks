@@ -1,5 +1,5 @@
+import "package:dartz/dartz.dart";
 import "package:dio/dio.dart";
-import "package:fpdart/fpdart.dart";
 
 import "app_exception.dart";
 import "connection/http_call_exception.dart";

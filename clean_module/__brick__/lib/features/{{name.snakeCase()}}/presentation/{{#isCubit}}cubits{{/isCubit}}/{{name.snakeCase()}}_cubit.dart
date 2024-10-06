@@ -8,7 +8,7 @@ import "../../business/entities/{{name.snakeCase()}}_entity.dart";
 import "package:internet_connection_checker_plus/internet_connection_checker_plus.dart";{{/hasRemoteData}}
 
 import "../../../../core/errors/failure.dart";
-{{#hasRemoteData}}import "../../../../core/services/connection/network_info.dart";{{/hasRemoteData}}
+{{#hasRemoteData}}import "../../../../core/services/network_info.dart";{{/hasRemoteData}}
 
 import "../../data/repositories/{{name.snakeCase()}}_repository_impl.dart";
 import "../../business/use_cases/get_{{name.snakeCase()}}.dart";

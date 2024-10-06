@@ -1,4 +1,4 @@
-{{#addTemplateCode}}import "package:fpdart/fpdart.dart";
+{{#addTemplateCode}}import "package:dartz/dartz.dart";
 
 import "../../../../core/errors/failure.dart";
 
