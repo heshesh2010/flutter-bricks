@@ -38,7 +38,7 @@ class {{name.pascalCase()}}Cubit extends Cubit<StateMixin<{{name.pascalCase()}}E
     );
 
     final failureOr{{name.pascalCase()}} =
-        await Get{{name.pascalCase()}}({{name.camelCase()}}Repository: repository).call(
+        await Get{{name.pascalCase()}}UseCase   ({{name.camelCase()}}Repository: repository).call(
       params: {{name.pascalCase()}}Params(),
     );
 

@@ -1,15 +1,15 @@
 {{#addTemplateCode}}import "package:dartz/dartz.dart";{{/addTemplateCode}}
 
-{{#hasRemoteData}}{{#hasLocalData}}import "../../../../core/services/connection/network_info.dart";{{/hasLocalData}}{{/hasRemoteData}}
+{{#hasRemoteData}}{{#hasLocalData}}import "../../../../core/services/network_info.dart";{{/hasLocalData}}{{/hasRemoteData}}
 {{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";
 import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
 
 
-import "../../business/repositories/{{name.snakeCase()}}_repository.dart";
+import "../../domain/repositories/{{name.snakeCase()}}_repository.dart";
 {{#hasLocalData}}import "../data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
 {{#hasRemoteData}}import "../data_sources/remote/{{name.snakeCase()}}_remote_data_source.dart";{{/hasRemoteData}}
-{{#addTemplateCode}}import "../models/dtos/{{name.snakeCase()}}_model.dart";
-import "../models/params/{{name.snakeCase()}}_params.dart";{{/addTemplateCode}}
+{{#addTemplateCode}}import "../models/response/{{name.snakeCase()}}_model.dart";
+import "../models/request/{{name.snakeCase()}}_params.dart";{{/addTemplateCode}}
 
 /// Data operations for the {{name.pascalCase()}} collection
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
