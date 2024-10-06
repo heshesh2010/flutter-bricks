@@ -1,6 +1,6 @@
 import "../../../../../core/adapters/dio_adapter.dart";
 {{#addTemplateCode}}import "../../models/params/{{name.snakeCase()}}_params.dart";
-import "../../models/dtos/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
+import "../../models/response/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
 /// Remote data source for the {{name.pascalCase()}} collection
 abstract class {{name.pascalCase()}}RemoteDataSource {
@@ -43,7 +43,7 @@ class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}
       },
     );
 
-   return {{name.pascalCase()}}Model.fromJson(json: response.data);
+   return {{name.pascalCase()}}Model.fromJson( response.data);
    
   }{{/addTemplateCode}}
  

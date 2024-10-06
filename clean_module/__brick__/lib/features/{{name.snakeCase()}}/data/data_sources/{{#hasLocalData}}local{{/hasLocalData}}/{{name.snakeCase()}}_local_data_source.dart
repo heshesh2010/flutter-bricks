@@ -3,7 +3,7 @@ import "package:shared_preferences/shared_preferences.dart";
 
 {{#addTemplateCode}}import "../../../../../../core/errors/app_exception.dart";
 
-import "../../models/dtos/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
+import "../../models/response/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
 /// Local data source for the {{name.pascalCase()}} collection
 abstract class {{name.pascalCase()}}LocalDataSource {
@@ -21,7 +21,7 @@ abstract class {{name.pascalCase()}}LocalDataSource {
 
 }
 
-{{#addTemplateCode}}const _cached{{name.pascalCase()}} = "CACHED_{{name.constantCase()}}";{{/addTemplateCode}}
+{{#addTemplateCode}}_cached{{name.pascalCase()}} = "CACHED_{{name.constantCase()}}";{{/addTemplateCode}}
 
 /// Local data source for the {{name.pascalCase()}} collection
 class {{name.pascalCase()}}LocalDataSourceImpl implements {{name.pascalCase()}}LocalDataSource {
@@ -41,7 +41,7 @@ class {{name.pascalCase()}}LocalDataSourceImpl implements {{name.pascalCase()}}L
     final jsonString = localSource.getString(_cached{{name.pascalCase()}});
 
     if (jsonString != null) {
-      return Future.value({{name.pascalCase()}}Model.fromJson(json: json.decode(jsonString)));
+      return Future.value({{name.pascalCase()}}Model.fromJson(json.decode(jsonString)));
     } else {
       throw CacheException();
     }

@@ -16,13 +16,22 @@ part '{{name.snakeCase()}}_model.g.dart';
   */
   {{/areCommentsOn}}
 @JsonSerializable()
-class {{name.pascalCase()}}RequestModel extends {{name.pascalCase()}}Entity {
-  {{name.pascalCase()}}RequestModel({required this.var1, required this.var1});
+class {{name.pascalCase()}}ResponseModel extends {{name.pascalCase()}}Entity {
+  {{name.pascalCase()}}ResponseModel({required this.var1, required this.var1});
 
-  factory {{name.pascalCase()}}RequestModel.fromJson(Map<String, dynamic> json) =>
-      _${{name.pascalCase()}}RequestModelFromJson(json);
+  factory {{name.pascalCase()}}ResponseModel.fromJson(Map<String, dynamic> json) =>
+      _${{name.pascalCase()}}ResponseModelFromJson(json);
   final String? var1;
   final String? var2;
 
-  Map<String, dynamic> toJson() => _$H{{name.pascalCase()}}RequestModelToJson(this);
+  Map<String, dynamic> toJson() => _${{name.pascalCase()}}ResponseModelToJson(this);
+
+   /// Converts the {{name.pascalCase()}} model instance to an entity
+  {{name.pascalCase()}}Entity toEntity() => const {{name.pascalCase()}}Entity();
+
+
+   /// Factory method to create a {{name.pascalCase()}} model instance from an 
+  /// entity
+  factory {{name.pascalCase()}}Model.fromEntity({required {{name.pascalCase()}}Entity entity}) => const {{name.pascalCase()}}Model();
+  
 }
