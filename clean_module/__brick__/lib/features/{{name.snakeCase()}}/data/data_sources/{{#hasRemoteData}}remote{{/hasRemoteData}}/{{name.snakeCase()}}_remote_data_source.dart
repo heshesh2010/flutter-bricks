@@ -1,5 +1,5 @@
 import "../../../../../core/adapters/dio_adapter.dart";
-{{#addTemplateCode}}import "../../models/params/{{name.snakeCase()}}_params.dart";
+{{#addTemplateCode}}import "../../models/request/{{name.snakeCase()}}_params.dart";
 import "../../models/response/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
 /// Remote data source for the {{name.pascalCase()}} collection
@@ -13,7 +13,7 @@ abstract class {{name.pascalCase()}}RemoteDataSource {
     Data Conversion: It often converts the data into a format that the rest of the application can use. This could involve deserializing JSON from an API into objects, or mapping database rows to objects.
   */{{/areCommentsOn}}
 
-  {{#addTemplateCode}}Future<{{name.pascalCase()}}Model> get{{name.pascalCase()}}({
+  {{#addTemplateCode}}Future<{{name.pascalCase()}}ResponseModel> get{{name.pascalCase()}}({
     required {{name.pascalCase()}}Params {{name.camelCase()}}Params,
   });{{/addTemplateCode}}
   
@@ -33,7 +33,7 @@ class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}
   */{{/areCommentsOn}}
 
   {{#addTemplateCode}}@override
-  Future<{{name.pascalCase()}}Model> get{{name.pascalCase()}}({
+  Future<{{name.pascalCase()}}ResponseModel> get{{name.pascalCase()}}({
     required {{name.pascalCase()}}Params {{name.camelCase()}}Params,
   }) async {
     final response = await dio.get(
@@ -43,7 +43,7 @@ class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}
       },
     );
 
-   return {{name.pascalCase()}}Model.fromJson( response.data);
+   return {{name.pascalCase()}}ResponseModel.fromJson( response.data);
    
   }{{/addTemplateCode}}
  

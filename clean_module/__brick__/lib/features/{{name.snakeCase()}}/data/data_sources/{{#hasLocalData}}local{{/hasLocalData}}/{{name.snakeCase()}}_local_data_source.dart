@@ -16,8 +16,8 @@ abstract class {{name.pascalCase()}}LocalDataSource {
     Data Conversion: It often converts the data into a format that the rest of the application can use. This could involve deserializing JSON from an API into objects, or mapping database rows to objects.
   */{{/areCommentsOn}}
 
-  {{#addTemplateCode}}Future<{{name.pascalCase()}}Model> getLast{{name.pascalCase()}}();
-  Future<void> cache{{name.pascalCase()}}({required {{name.pascalCase()}}Model? {{name.camelCase()}}ToCache});{{/addTemplateCode}}
+  {{#addTemplateCode}}Future<{{name.pascalCase()}}ResponseModel> getLast{{name.pascalCase()}}();
+  Future<void> cache{{name.pascalCase()}}({required {{name.pascalCase()}}ResponseModel? {{name.camelCase()}}ToCache});{{/addTemplateCode}}
 
 }
 
@@ -37,18 +37,18 @@ class {{name.pascalCase()}}LocalDataSourceImpl implements {{name.pascalCase()}}L
   */{{/areCommentsOn}}
 
   {{#addTemplateCode}}@override
-  Future<{{name.pascalCase()}}Model> getLast{{name.pascalCase()}}() {
+  Future<{{name.pascalCase()}}ResponseModel> getLast{{name.pascalCase()}}() {
     final jsonString = localSource.getString(_cached{{name.pascalCase()}});
 
     if (jsonString != null) {
-      return Future.value({{name.pascalCase()}}Model.fromJson(json.decode(jsonString)));
+      return Future.value({{name.pascalCase()}}ResponseModel.fromJson(json.decode(jsonString)));
     } else {
       throw CacheException();
     }
   }
 
   @override
-  Future<void> cache{{name.pascalCase()}}({required {{name.pascalCase()}}Model? {{name.camelCase()}}ToCache}) async {
+  Future<void> cache{{name.pascalCase()}}({required {{name.pascalCase()}}ResponseModel? {{name.camelCase()}}ToCache}) async {
     if ({{name.camelCase()}}ToCache != null) {
       localSource.setString(
         _cached{{name.pascalCase()}},

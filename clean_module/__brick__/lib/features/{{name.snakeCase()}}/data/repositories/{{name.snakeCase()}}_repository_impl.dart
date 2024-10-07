@@ -30,23 +30,23 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
   */{{/areCommentsOn}}
 
   {{#addTemplateCode}}@override
-  Future<Either<Failure, {{name.pascalCase()}}Model>> get{{name.pascalCase()}}(
+  Future<Either<Failure, {{name.pascalCase()}}ResponseModel>> get{{name.pascalCase()}}(
       {required {{name.pascalCase()}}Params {{name.camelCase()}}Params}) async {
 
     {{#hasRemoteData}}if (await networkInfo.isConnected) {
-      return ErrorHandler.handleApiCall<{{name.pascalCase()}}Model>(
+      return ErrorHandler.handleApiCall<{{name.pascalCase()}}ResponseModel>(
         () {
           return remoteDataSource.get{{name.pascalCase()}}({{name.camelCase()}}Params: {{name.camelCase()}}Params);
         },
       );
     } else {
-      {{#hasLocalData}}return ErrorHandler.handleCacheCall<{{name.pascalCase()}}Model>(
+      {{#hasLocalData}}return ErrorHandler.handleCacheCall<{{name.pascalCase()}}ResponseModel>(
         () {
           return localDataSource.getLast{{name.pascalCase()}}();
         },
       );{{/hasLocalData}}
     }{{/hasRemoteData}}{{^hasRemoteData}}
-    {{#hasLocalData}}return ErrorHandler.handleCacheCall<{{name.pascalCase()}}Model>(
+    {{#hasLocalData}}return ErrorHandler.handleCacheCall<{{name.pascalCase()}}ResponseModel>(
         () {
           return localDataSource.getLast{{name.pascalCase()}}();
         },

@@ -7,7 +7,7 @@ import "../../../../../core/errors/failure.dart";
 import "../../../../core/adapters/dio_adapter.dart";
 import "../../../../core/services/connection/network_info.dart";
 
-import "../../data/models/params/{{name.snakeCase()}}_params.dart";
+import "../../data/models/request/{{name.snakeCase()}}_params.dart";
 import "../../business/entities/{{name.snakeCase()}}_entity.dart";
 import "../../business/use_cases/get_{{name.snakeCase()}}.dart";
 {{#hasLocalData}}import "../../data/data_sources/local/{{name.snakeCase()}}_local_data_source.dart";{{/hasLocalData}}
@@ -40,19 +40,19 @@ class {{name.pascalCase()}}Provider extends ChangeNotifier {
       ),
     );
 
-    final failureOr{{name.pascalCase()}} =
+    final failureOr{const {name.pascalCase()}} =
         await Get{{name.pascalCase()}}({{name.camelCase()}}Repository: repository).call(
       params: {{name.pascalCase()}}Params(),
     );
 
     failureOr{{name.pascalCase()}}.fold(
       (Failure newFailure) {
-        {{name.camelCase()}} = null;
+        {const {name.camelCase()}} = null;
         failure = newFailure;
         notifyListeners();
       },
       ({{name.pascalCase()}}Entity new{{name.pascalCase()}}) {
-        {{name.camelCase()}} = new{{name.pascalCase()}};
+        {const const {name.camelCase()}} = {name.pascalCase()}};
         failure = null;
         notifyListeners();
       },

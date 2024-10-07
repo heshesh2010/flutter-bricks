@@ -17,7 +17,7 @@ part '{{name.snakeCase()}}_model.g.dart';
   {{/areCommentsOn}}
 @JsonSerializable()
 class {{name.pascalCase()}}ResponseModel extends {{name.pascalCase()}}Entity {
-  {{name.pascalCase()}}ResponseModel({required this.var1, required this.var1});
+  {{name.pascalCase()}}ResponseModel({required this.var1, required this.var2});
 
   factory {{name.pascalCase()}}ResponseModel.fromJson(Map<String, dynamic> json) =>
       _${{name.pascalCase()}}ResponseModelFromJson(json);
