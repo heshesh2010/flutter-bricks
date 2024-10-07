@@ -3,6 +3,7 @@
 {{#hasRemoteData}}{{#hasLocalData}}import "../../../../core/services/network_info.dart";{{/hasLocalData}}{{/hasRemoteData}}
 {{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";
 import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
+import "package:injectable/injectable.dart";
 
 
 import "../../domain/repositories/{{name.snakeCase()}}_repository.dart";
@@ -12,6 +13,7 @@ import "../../domain/repositories/{{name.snakeCase()}}_repository.dart";
 import "../models/request/{{name.snakeCase()}}_params.dart";{{/addTemplateCode}}
 
 /// Data operations for the {{name.pascalCase()}} collection
+@Injectable(as: {{name.pascalCase()}}Repository)
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
   /// Data operations for the {{name.pascalCase()}} collection
   {{name.pascalCase()}}RepositoryImpl({

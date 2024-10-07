@@ -1,6 +1,8 @@
 import "../../../../../core/adapters/dio_adapter.dart";
 {{#addTemplateCode}}import "../../models/request/{{name.snakeCase()}}_params.dart";
 import "../../models/response/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
+import 'package:injectable/injectable.dart';
+import "../../../../../core/network/api/network_apis_constants.dart";
 
 /// Remote data source for the {{name.pascalCase()}} collection
 abstract class {{name.pascalCase()}}RemoteDataSource {
@@ -20,6 +22,7 @@ abstract class {{name.pascalCase()}}RemoteDataSource {
 }
 
 /// Remote data source for the {{name.pascalCase()}} collection
+@Injectable(as: {{name.pascalCase()}}RemoteDataSource)
 class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}RemoteDataSource {
   /// Remote data source for the {{name.pascalCase()}} collection
  {{name.pascalCase()}}RemoteDataSourceImpl({required this.dio});
@@ -37,10 +40,8 @@ class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}
     required {{name.pascalCase()}}Params {{name.camelCase()}}Params,
   }) async {
     final response = await dio.get(
-      "YOUR_API_URL_HERE",
-      queryParameters: {
-        "api_key": "if needed",
-      },
+      ApiConstants.   ,
+    
     );
 
    return {{name.pascalCase()}}ResponseModel.fromJson( response.data);

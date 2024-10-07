@@ -21,7 +21,7 @@ abstract class {{name.pascalCase()}}LocalDataSource {
 
 }
 
-{{#addTemplateCode}}_cached{{name.pascalCase()}} = "CACHED_{{name.constantCase()}}";{{/addTemplateCode}}
+{{#addTemplateCode}}String _cached{{name.pascalCase()}} = "CACHED_{{name.constantCase()}}";{{/addTemplateCode}}
 
 /// Local data source for the {{name.pascalCase()}} collection
 class {{name.pascalCase()}}LocalDataSourceImpl implements {{name.pascalCase()}}LocalDataSource {

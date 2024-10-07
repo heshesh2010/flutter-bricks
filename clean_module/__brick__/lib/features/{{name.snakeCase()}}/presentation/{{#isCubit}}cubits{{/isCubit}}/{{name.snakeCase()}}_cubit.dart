@@ -1,4 +1,6 @@
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:dartz/dartz.dart";
+
 {{#hasLocalData}}{{#addTemplateCode}}import "package:shared_preferences/shared_preferences.dart";{{/addTemplateCode}}{{/hasLocalData}}
 
 import "../../../../core/cubit_states/state_mixin.dart";
@@ -37,7 +39,7 @@ class {{name.pascalCase()}}Cubit extends Cubit<StateMixin<{{name.pascalCase()}}E
       ),{{/hasRemoteData}}
     );
 
-    final failureOr{{name.pascalCase()}} =
+     final Either<Failure, {{name.pascalCase()}}Entity> failureOr{{name.pascalCase()}} =
         await Get{{name.pascalCase()}}UseCase   ({{name.camelCase()}}Repository: repository).call(
       {{name.pascalCase()}}Params(),
     );

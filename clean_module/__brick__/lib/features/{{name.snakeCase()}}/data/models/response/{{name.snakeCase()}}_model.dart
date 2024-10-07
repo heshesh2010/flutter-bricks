@@ -32,6 +32,9 @@ class {{name.pascalCase()}}ResponseModel extends {{name.pascalCase()}}Entity {
 
    /// Factory method to create a {{name.pascalCase()}} model instance from an 
   /// entity
-  factory {{name.pascalCase()}}Model.fromEntity({required {{name.pascalCase()}}Entity entity}) => const {{name.pascalCase()}}Model();
+  factory {{name.pascalCase()}}ResponseModel.fromEntity({required {{name.pascalCase()}}Entity entity}) => const {{name.pascalCase()}}ResponseModel(
+    var1: entity.var1,
+    var2: entity.var2,
+  );
   
 }
